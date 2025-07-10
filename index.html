@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="theme-color" content="#3b82f6">
+    <title>Ajay J - ML Developer & AI Enthusiast</title>
+    <meta name="description" content="Portfolio of Ajay J - ML Developer, AI Enthusiast, and Web Developer. Showcasing projects in Machine Learning, AI, and modern web development.">
+    <meta name="keywords" content="Ajay J, ML Developer, AI Developer, Machine Learning, Web Developer, Portfolio, NIT Trichy">
+    <link rel="icon" href="avataaars.png" type="image/png">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css" rel="stylesheet">
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="loading">
+    
+    <!-- Page Loader -->
+    <div class="page-loader" id="pageLoader">
+        <div class="loader-content">
+            <div class="loader-text">Loading...</div>
+            <div class="loader-bar">
+                <div class="loader-progress"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Particle Canvas -->
+    <canvas id="particles-canvas"></canvas>
+
+    <!-- Header with Light/Dark Mode Toggle -->
+    <header class="header" id="header">
+        <div class="container">
+            <nav class="navbar">
+                <!-- Logo/Brand -->
+                <div class="nav-brand">
+                    <a href="#home" class="brand-link">Ajay J</a>
+                </div>
+                
+                <!-- Mobile Menu Toggle -->
+                <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle navigation menu">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                </button>
+                
+                <!-- Navigation Menu -->
+                <ul class="nav-menu" id="nav-menu">
+                    <!-- Theme Switch with Icons -->
+                    <li class="nav-item theme-item">
+                        <div class="theme-switch-wrapper">
+                            <!-- Sun and Moon icons for light and dark mode -->
+                            <i class='bx bx-sun' id="light-icon" style="cursor: pointer;"></i>
+                            <i class='bx bx-moon' id="dark-icon" style="cursor: pointer;"></i>
+                        </div>
+                    </li>
+                    <li class="nav-item"><a href="#home" class="nav__link" id="nav-home">Home</a></li>
+                    <li class="nav-item"><a href="#about" class="nav__link" id="nav-about">About</a></li>
+                    <li class="nav-item"><a href="#skills" class="nav__link" id="nav-skills">Skills</a></li>
+                    <li class="nav-item"><a href="#portfolio" class="nav__link" id="nav-portfolio">Works</a></li>
+                    <li class="nav-item"><a href="#contact" class="nav__link" id="nav-contact">Contact</a></li>
+                    <!-- Desktop only - Dropdown for More -->
+                    <li class="nav-item dropdown desktop-only">
+                        <button class="dropdown-toggle" aria-label="More sections">
+                            <span>More</span>
+                            <i class='bx bx-chevron-down'></i>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a href="#education" class="nav__link">Education</a></li>
+                            <li><a href="#experience" class="nav__link">Experience</a></li>
+                        </ul>
+                    </li>
+                    <!-- Mobile only - Direct links -->
+                    <li class="nav-item mobile-only"><a href="#education" class="nav__link">Education</a></li>
+                    <li class="nav-item mobile-only"><a href="#experience" class="nav__link">Experience</a></li>
+                </ul>   
+            </nav>
+        </div>
+    </header>
+
+    <!-- Home Section -->
+    <section id="home" class="home reveal">
+        <div class="container home-container">
+            <div class="homeplusimage">
+                <div class="home-content reveal-left">
+                    <h1>Hi, I'm <span class="highlight">Ajay J</span></h1>
+                    <h1><span class="role-prefix">a</span> <span id="changing-role">ML Developer</span></h1>
+                    <p>Weaving Intelligence Into The Web: Where AI Meets Modern Development</p>
+                    <div>
+                        <a href="#contact" class="btn-primary">Contact Me</a>  
+                    </div>
+                </div>
+                <div class="home-img reveal-right">
+                    <img src="profile_img.jpg" alt="Profile Picture">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about reveal">
+        <div class="container">
+            <h2 class="section-title reveal-scale">About Me</h2>
+            <div class="about-content reveal">
+                <p> I'm a determined go-getter with a strong work ethic. You can count on me to get things done.
+                    I care deeply about others and approach tasks with sensitivity. As a natural leader, I excel at bringing teams together.
+                    While ambitious, I balance drive with empathy. I'm the dependable friend who'll work tirelessly on a project, but also remember your birthday.
+                    My mix of ambition and compassion means I push for results while ensuring everyone feels valued. Need a motivated teammate who'll have your back? That's me in a nutshell. 
+                </p>
+            </div>
+            <br>
+            <div class="reveal">
+                <a href="AjayJ_Linkedin_Resume.pdf" class="btn-primary" download>Download Resume</a>
+            </div>
+            <br>
+            <br>     
+            <!-- GitHub Contributions Section -->
+            <div class="reveal">
+                <div class="github-contributions">
+                    <h3>My GitHub Contributions</h3>
+                    <!-- Replace 'your-username' with your actual GitHub username -->
+                    <img src="https://ghchart.rshah.org/AjayJ07-git" alt="GitHub Contributions Graph">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills">
+        <div class="container">
+            <h2 class="section-title reveal-scale">Skills</h2>
+            <div class="skills-slider-wrapper">
+                <button class="skills-nav-btn skills-prev-btn" id="skillsPrevBtn" aria-label="Previous skills">
+                    <i class='bx bx-chevron-left'></i>
+                </button>
+                <div class="skills-slider" id="skillsSlider">
+                    <div class="skills-content stagger-parent">
+                        <div class="skill-item stagger-child">
+                            <img src="icons/c++.png" alt="C++ Icon" class="skill-icon">
+                            <h3>C++</h3>
+                            <p>Programming Language</p>
+                        </div>
+                        <div class="skill-item stagger-child">
+                            <img src="icons/python.png" alt="Python Icon" class="skill-icon">
+                            <h3>Python</h3>
+                            <p>Programming Language</p>
+                        </div>
+                        <div class="skill-item stagger-child">
+                            <img src="icons/html.png" alt="HTML Icon" class="skill-icon">
+                            <h3>HTML</h3>
+                            <p>Markup Language</p>
+                        </div>
+                        <div class="skill-item stagger-child">
+                            <img src="icons/css.png" alt="CSS Icon" class="skill-icon">
+                            <h3>CSS</h3>
+                            <p>Styling Language</p>
+                        </div>
+                        <div class="skill-item stagger-child">
+                            <img src="icons/js.png" alt="JavaScript Icon" class="skill-icon">
+                            <h3>JavaScript</h3>
+                            <p>Programming Language</p>
+                        </div>
+                        <div class="skill-item stagger-child">
+                            <img src="icons/react.png" alt="ReactJS Icon" class="skill-icon">
+                            <h3>ReactJS</h3>
+                            <p>JavaScript Library</p>
+                        </div>
+                        <div class="skill-item stagger-child">
+                            <img src="icons/mysql.png" alt="MySQL Icon" class="skill-icon">
+                            <h3>MySQL</h3>
+                            <p>Database</p>
+                        </div>
+                        <div class="skill-item stagger-child">
+                            <img src="icons/github.png" alt="GitHub Icon" class="skill-icon">
+                            <h3>GitHub</h3>
+                            <p>Version Control</p>
+                        </div>
+                        <div class="skill-item stagger-child">
+                            <img src="icons/netlify.png" alt="Netlify Icon" class="skill-icon">
+                            <h3>Netlify</h3>
+                            <p>Deployment Platform</p>
+                        </div>
+                        <div class="skill-item stagger-child">
+                            <img src="icons/ms.png" alt="MS Office Icon" class="skill-icon">
+                            <h3>Microsoft Office</h3>
+                            <p>Productivity Suite</p>
+                        </div>
+                    </div>
+                </div>
+                <button class="skills-nav-btn skills-next-btn" id="skillsNextBtn" aria-label="Next skills">
+                    <i class='bx bx-chevron-right'></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="portfolio">
+        <div class="container">
+            <h2 class="section-title reveal-scale">My Works</h2>
+            <div class="portfolio-slider-wrapper">
+                <button class="portfolio-nav-btn portfolio-prev-btn" id="portfolioPrevBtn" aria-label="Previous projects">
+                    <i class='bx bx-chevron-left'></i>
+                </button>
+                <div class="portfolio-slider" id="portfolioSlider">
+                    <div class="portfolio-content stagger-parent">
+                        <div class="portfolio-item stagger-child">
+                            <h3>Quantum AI Model</h3>
+                            <br>
+                            <p>The project explores quantum-AI integration, covering environment setup, quantum fundamentals, model implementation, and data preparation in a comprehensive guide.</p>
+                            <br><a href="https://github.com/AjayJ07-git/QuantumModel" class="btn-primary" target="_blank" rel="noopener noreferrer">View in GitHub</a> 
+                        </div>
+                        <div class="portfolio-item stagger-child">
+                            <h3>YOLOv5 Image Object Detection </h3>
+                            <br><p>A Jupyter Notebook project implementing YOLOv5 for efficient image object detection, covering setup, data preparation, model training, and result analysis.</p>
+                            <br><a href="https://github.com/AjayJ07-git/YoloV5ObjectDetection" class="btn-primary" target="_blank" rel="noopener noreferrer">View in GitHub</a> 
+                        </div>
+                    </div>
+                </div>
+                <button class="portfolio-nav-btn portfolio-next-btn" id="portfolioNextBtn" aria-label="Next projects">
+                    <i class='bx bx-chevron-right'></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="education">
+        <div class="container">
+            <h2 class="section-title reveal-scale">Education</h2>
+            <div class="timeline">
+                <div class="timeline-item left fade-in">
+                    <div class="timeline-content">
+                        <h3>Bachelor of Technology in Civil Engineering (08.14 CGPA) </h3>
+                        <p>NIT, Trichy 2022 - Present</p>
+                    </div>
+                </div>
+                <div class="timeline-item right fade-in">
+                    <div class="timeline-content">
+                        <h3>Class XII  (94.20%) </h3>
+                        <p>Pushpalata Vidya Mandir 2021-22 </p>
+                    </div>
+                </div>
+                <div class="timeline-item left fade-in">
+                    <div class="timeline-content">
+                        <h3>Class X  (83.60%) </h3>
+                        <p>Pushpalata Vidya Mandir 2019-20 </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Experience Section -->
+    <section id="experience" class="experience">
+        <div class="container">
+            <h2 class="section-title reveal-scale">Professional Experience</h2>
+            <div class="experience-content">
+                <div class="experience-item reveal">
+                    <div class="experience-header">
+                        <h3>Research Intern - Natural Language Processing</h3>
+                        <span class="experience-duration">Jun 2024 - Jul 2024</span>
+                    </div>
+                    <div class="experience-details">
+                        <p class="experience-company">National Institute of Technology, Trichy (Onsite)</p>
+                        <ul class="experience-description">
+                            <li>Conducted comprehensive research on advanced Natural Language Processing techniques and deep learning architectures</li>
+                            <li>Implemented and optimized machine learning models for text analysis, sentiment processing, and language understanding tasks</li>
+                            <li>Collaborated effectively with faculty members and fellow researchers to develop innovative NLP solutions and methodologies</li>
+                            <li>Contributed to research papers, technical documentation, and knowledge sharing initiatives within the research community</li>
+                            <li>Gained hands-on experience with state-of-the-art NLP frameworks, tools, and evaluation metrics</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title reveal-scale">Contact Details</h2>
+            <div class="contact-details stagger-parent">
+                <p class="stagger-child"><a href="https://github.com/AjayJ07-git" target="_blank"><i class='bx bxl-github' style="font-size: 200%;"></i></a></p>
+                <p class="stagger-child"><a href="https://www.linkedin.com/in/ajay-j-b1387031a/" target="_blank"><i class='bx bxl-linkedin' style="font-size: 200%;"></i></a></p>
+                <p class="stagger-child"><a href="mailto:ajay.jofficial3@gmail.com"><i class='bx bxs-envelope' style="font-size: 200%;"></i></a></p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer reveal">
+        <p>&copy; 2024 Ajay J. All rights reserved.</p>
+    </footer>
+
+    <!-- Main JavaScript -->
+    <script src="scripts.js"></script>
+</body>
+</html>
