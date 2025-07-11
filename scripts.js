@@ -731,102 +731,125 @@ function initSkillsSlider() {
     const prevBtn = document.getElementById('skillsPrevBtn');
     const nextBtn = document.getElementById('skillsNextBtn');
     
-    if (!skillsSlider || !skillsContent || !prevBtn || !nextBtn) return;
+    if (!skillsContent || !prevBtn || !nextBtn) return;
     
     let currentIndex = 0;
-    const skillItems = skillsContent.querySelectorAll('.skill-item');
+    let autoScrollInterval;
+    let isAutoScrolling = true;
     
-    // Calculate items per view based on screen size
     function getItemsPerView() {
-        const width = window.innerWidth;
-        if (width >= 1200) return skillItems.length; // Show all on large screens
-        if (width >= 768) return 3;
-        if (width >= 480) return 2;
-        return 1;
+        const containerWidth = skillsSlider.offsetWidth;
+        const itemWidth = getItemWidth();
+        return Math.floor(containerWidth / itemWidth);
     }
     
     function getItemWidth() {
-        return skillItems[0]?.offsetWidth + 25 || 180; // item width + gap
+        return 205; // 180px width + 25px gap
     }
     
     function updateSlider() {
-        const itemsPerView = getItemsPerView();
         const itemWidth = getItemWidth();
-        const maxIndex = Math.max(0, skillItems.length - itemsPerView);
+        const translateX = currentIndex * itemWidth;
+        skillsContent.style.transform = `translateX(-${translateX}px)`;
         
-        // Ensure currentIndex is within bounds
-        currentIndex = Math.min(currentIndex, maxIndex);
-        
-        const translateX = -currentIndex * itemWidth;
-        skillsContent.style.transform = `translateX(${translateX}px)`;
-        
-        // Update button states
-        prevBtn.style.opacity = currentIndex === 0 ? '0.5' : '1';
-        nextBtn.style.opacity = currentIndex >= maxIndex ? '0.5' : '1';
-        prevBtn.style.pointerEvents = currentIndex === 0 ? 'none' : 'auto';
-        nextBtn.style.pointerEvents = currentIndex >= maxIndex ? 'none' : 'auto';
+        // Update button visibility based on screen size
+        if (window.innerWidth >= 1200) {
+            prevBtn.style.display = 'none';
+            nextBtn.style.display = 'none';
+            skillsContent.style.transform = 'translateX(0)';
+        } else {
+            prevBtn.style.display = 'flex';
+            nextBtn.style.display = 'flex';
+        }
     }
     
-    // Event listeners
-    prevBtn.addEventListener('click', () => {
-        if (currentIndex > 0) {
-            currentIndex--;
-            updateSlider();
-        }
-    });
-    
-    nextBtn.addEventListener('click', () => {
+    function nextSlide() {
+        const totalItems = skillsContent.children.length;
         const itemsPerView = getItemsPerView();
-        const maxIndex = Math.max(0, skillItems.length - itemsPerView);
-        if (currentIndex < maxIndex) {
-            currentIndex++;
-            updateSlider();
-        }
-    });
+        const maxIndex = Math.max(0, totalItems - itemsPerView);
+        
+        currentIndex = currentIndex >= maxIndex ? 0 : currentIndex + 1;
+        updateSlider();
+    }
     
-    // Auto-scroll functionality
-    let autoScrollInterval;
+    function prevSlide() {
+        const totalItems = skillsContent.children.length;
+        const itemsPerView = getItemsPerView();
+        const maxIndex = Math.max(0, totalItems - itemsPerView);
+        
+        currentIndex = currentIndex <= 0 ? maxIndex : currentIndex - 1;
+        updateSlider();
+    }
     
     function startAutoScroll() {
-        autoScrollInterval = setInterval(() => {
-            const itemsPerView = getItemsPerView();
-            const maxIndex = Math.max(0, skillItems.length - itemsPerView);
-            
-            if (currentIndex >= maxIndex) {
-                currentIndex = 0;
-            } else {
-                currentIndex++;
-            }
-            updateSlider();
-        }, 5000);
+        if (window.innerWidth < 1200) {
+            autoScrollInterval = setInterval(() => {
+                if (isAutoScrolling) {
+                    nextSlide();
+                }
+            }, 4000); // Slower, more controlled timing
+        }
     }
     
     function stopAutoScroll() {
         clearInterval(autoScrollInterval);
+        isAutoScrolling = false;
     }
     
-    // Start auto-scroll only on smaller screens
     function handleAutoScroll() {
-        if (getItemsPerView() < skillItems.length) {
-            startAutoScroll();
-        } else {
+        if (window.innerWidth >= 1200) {
             stopAutoScroll();
+            return;
         }
+        
+        // Pause auto-scroll on hover
+        skillsSlider.addEventListener('mouseenter', stopAutoScroll);
+        skillsSlider.addEventListener('mouseleave', () => {
+            isAutoScrolling = true;
+            startAutoScroll();
+        });
+        
+        // Pause auto-scroll on touch
+        skillsSlider.addEventListener('touchstart', stopAutoScroll);
+        skillsSlider.addEventListener('touchend', () => {
+            setTimeout(() => {
+                isAutoScrolling = true;
+                startAutoScroll();
+            }, 2000);
+        });
     }
     
-    // Pause auto-scroll on hover
-    skillsSlider.addEventListener('mouseenter', stopAutoScroll);
-    skillsSlider.addEventListener('mouseleave', handleAutoScroll);
-    
-    // Window resize handler
-    window.addEventListener('resize', () => {
-        updateSlider();
-        handleAutoScroll();
+    // Event listeners
+    prevBtn.addEventListener('click', () => {
+        stopAutoScroll();
+        prevSlide();
+        setTimeout(() => {
+            isAutoScrolling = true;
+            startAutoScroll();
+        }, 3000);
     });
     
-    // Initial setup
+    nextBtn.addEventListener('click', () => {
+        stopAutoScroll();
+        nextSlide();
+        setTimeout(() => {
+            isAutoScrolling = true;
+            startAutoScroll();
+        }, 3000);
+    });
+    
+    // Initialize
     updateSlider();
     handleAutoScroll();
+    startAutoScroll();
+    
+    // Handle window resize
+    window.addEventListener('resize', throttle(() => {
+        updateSlider();
+        stopAutoScroll();
+        handleAutoScroll();
+        startAutoScroll();
+    }, 250));
 }
 
 // ==================== PORTFOLIO SLIDER ====================
@@ -836,101 +859,125 @@ function initPortfolioSlider() {
     const prevBtn = document.getElementById('portfolioPrevBtn');
     const nextBtn = document.getElementById('portfolioNextBtn');
     
-    if (!portfolioSlider || !portfolioContent || !prevBtn || !nextBtn) return;
+    if (!portfolioContent || !prevBtn || !nextBtn) return;
     
     let currentIndex = 0;
-    const portfolioItems = portfolioContent.querySelectorAll('.portfolio-item');
+    let autoScrollInterval;
+    let isAutoScrolling = true;
     
-    // Calculate items per view based on screen size
     function getItemsPerView() {
-        const width = window.innerWidth;
-        if (width >= 1000) return portfolioItems.length; // Show all on large screens
-        if (width >= 600) return 2;
-        return 1;
+        const containerWidth = portfolioSlider.offsetWidth;
+        const itemWidth = getItemWidth();
+        return Math.floor(containerWidth / itemWidth);
     }
     
     function getItemWidth() {
-        return portfolioItems[0]?.offsetWidth + 30 || 320; // item width + gap
+        return 330; // 300px width + 30px gap
     }
     
     function updateSlider() {
-        const itemsPerView = getItemsPerView();
         const itemWidth = getItemWidth();
-        const maxIndex = Math.max(0, portfolioItems.length - itemsPerView);
+        const translateX = currentIndex * itemWidth;
+        portfolioContent.style.transform = `translateX(-${translateX}px)`;
         
-        // Ensure currentIndex is within bounds
-        currentIndex = Math.min(currentIndex, maxIndex);
-        
-        const translateX = -currentIndex * itemWidth;
-        portfolioContent.style.transform = `translateX(${translateX}px)`;
-        
-        // Update button states
-        prevBtn.style.opacity = currentIndex === 0 ? '0.5' : '1';
-        nextBtn.style.opacity = currentIndex >= maxIndex ? '0.5' : '1';
-        prevBtn.style.pointerEvents = currentIndex === 0 ? 'none' : 'auto';
-        nextBtn.style.pointerEvents = currentIndex >= maxIndex ? 'none' : 'auto';
+        // Update button visibility based on screen size
+        if (window.innerWidth >= 1000) {
+            prevBtn.style.display = 'none';
+            nextBtn.style.display = 'none';
+            portfolioContent.style.transform = 'translateX(0)';
+        } else {
+            prevBtn.style.display = 'flex';
+            nextBtn.style.display = 'flex';
+        }
     }
     
-    // Event listeners
-    prevBtn.addEventListener('click', () => {
-        if (currentIndex > 0) {
-            currentIndex--;
-            updateSlider();
-        }
-    });
-    
-    nextBtn.addEventListener('click', () => {
+    function nextSlide() {
+        const totalItems = portfolioContent.children.length;
         const itemsPerView = getItemsPerView();
-        const maxIndex = Math.max(0, portfolioItems.length - itemsPerView);
-        if (currentIndex < maxIndex) {
-            currentIndex++;
-            updateSlider();
-        }
-    });
+        const maxIndex = Math.max(0, totalItems - itemsPerView);
+        
+        currentIndex = currentIndex >= maxIndex ? 0 : currentIndex + 1;
+        updateSlider();
+    }
     
-    // Auto-scroll functionality
-    let autoScrollInterval;
+    function prevSlide() {
+        const totalItems = portfolioContent.children.length;
+        const itemsPerView = getItemsPerView();
+        const maxIndex = Math.max(0, totalItems - itemsPerView);
+        
+        currentIndex = currentIndex <= 0 ? maxIndex : currentIndex - 1;
+        updateSlider();
+    }
     
     function startAutoScroll() {
-        autoScrollInterval = setInterval(() => {
-            const itemsPerView = getItemsPerView();
-            const maxIndex = Math.max(0, portfolioItems.length - itemsPerView);
-            
-            if (currentIndex >= maxIndex) {
-                currentIndex = 0;
-            } else {
-                currentIndex++;
-            }
-            updateSlider();
-        }, 6000);
+        if (window.innerWidth < 1000) {
+            autoScrollInterval = setInterval(() => {
+                if (isAutoScrolling) {
+                    nextSlide();
+                }
+            }, 5000); // Controlled timing for portfolio
+        }
     }
     
     function stopAutoScroll() {
         clearInterval(autoScrollInterval);
+        isAutoScrolling = false;
     }
     
-    // Start auto-scroll only on smaller screens
     function handleAutoScroll() {
-        if (getItemsPerView() < portfolioItems.length) {
-            startAutoScroll();
-        } else {
+        if (window.innerWidth >= 1000) {
             stopAutoScroll();
+            return;
         }
+        
+        // Pause auto-scroll on hover
+        portfolioSlider.addEventListener('mouseenter', stopAutoScroll);
+        portfolioSlider.addEventListener('mouseleave', () => {
+            isAutoScrolling = true;
+            startAutoScroll();
+        });
+        
+        // Pause auto-scroll on touch
+        portfolioSlider.addEventListener('touchstart', stopAutoScroll);
+        portfolioSlider.addEventListener('touchend', () => {
+            setTimeout(() => {
+                isAutoScrolling = true;
+                startAutoScroll();
+            }, 3000);
+        });
     }
     
-    // Pause auto-scroll on hover
-    portfolioSlider.addEventListener('mouseenter', stopAutoScroll);
-    portfolioSlider.addEventListener('mouseleave', handleAutoScroll);
-    
-    // Window resize handler
-    window.addEventListener('resize', () => {
-        updateSlider();
-        handleAutoScroll();
+    // Event listeners
+    prevBtn.addEventListener('click', () => {
+        stopAutoScroll();
+        prevSlide();
+        setTimeout(() => {
+            isAutoScrolling = true;
+            startAutoScroll();
+        }, 4000);
     });
     
-    // Initial setup
+    nextBtn.addEventListener('click', () => {
+        stopAutoScroll();
+        nextSlide();
+        setTimeout(() => {
+            isAutoScrolling = true;
+            startAutoScroll();
+        }, 4000);
+    });
+    
+    // Initialize
     updateSlider();
     handleAutoScroll();
+    startAutoScroll();
+    
+    // Handle window resize
+    window.addEventListener('resize', throttle(() => {
+        updateSlider();
+        stopAutoScroll();
+        handleAutoScroll();
+        startAutoScroll();
+    }, 250));
 }
 
 // ==================== CONSOLE WELCOME MESSAGE ====================
