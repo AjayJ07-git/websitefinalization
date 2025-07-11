@@ -16,6 +16,9 @@ function initializeApp() {
     initDropdown();
     initSkillsSlider();
     initPortfolioSlider();
+    initButtonEffects();
+    initAccessibility();
+    initScrollToTop(); // Add scroll to top functionality
 }
 
 // ==================== PAGE LOADER ====================
@@ -648,11 +651,41 @@ function initAccessibility() {
     }
 }
 
+// ==================== SCROLL TO TOP BUTTON ====================
+function initScrollToTop() {
+    const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+    if (!scrollToTopBtn) return;
+
+    let isVisible = false;
+
+    function toggleVisibility() {
+        if (window.scrollY > 300) { // Show when scrolled down 300px
+            if (!isVisible) {
+                scrollToTopBtn.classList.add('show');
+                isVisible = true;
+            }
+        } else {
+            if (isVisible) {
+                scrollToTopBtn.classList.remove('show');
+                isVisible = false;
+            }
+        }
+    }
+
+    function scrollToTop() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    }
+
+    scrollToTopBtn.addEventListener('click', scrollToTop);
+    window.addEventListener('scroll', throttle(toggleVisibility, 100));
+    toggleVisibility(); // Set initial visibility
+}
+
 // ==================== FINAL INITIALIZATION ====================
 document.addEventListener('DOMContentLoaded', function() {
-    initButtonEffects();
-    initAccessibility();
-    
     // Initialize ripple effect CSS
     const rippleStyle = document.createElement('style');
     rippleStyle.textContent = `

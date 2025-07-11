@@ -57,7 +57,6 @@
                             <i class='bx bx-moon' id="dark-icon" style="cursor: pointer;"></i>
                         </div>
                     </li>
-                    <li class="nav-item"><a href="#home" class="nav__link" id="nav-home">Home</a></li>
                     <li class="nav-item"><a href="#about" class="nav__link" id="nav-about">About</a></li>
                     <li class="nav-item"><a href="#skills" class="nav__link" id="nav-skills">Skills</a></li>
                     <li class="nav-item"><a href="#portfolio" class="nav__link" id="nav-portfolio">Works</a></li>
@@ -102,48 +101,51 @@
     <section id="about" class="about reveal">
         <div class="container">
             <h2 class="section-title reveal-scale">About Me</h2>
-            <div class="about-content reveal">
-                <p> I'm a determined go-getter with a strong work ethic. You can count on me to get things done.
-                    I care deeply about others and approach tasks with sensitivity. As a natural leader, I excel at bringing teams together.
-                    While ambitious, I balance drive with empathy. I'm the dependable friend who'll work tirelessly on a project, but also remember your birthday.
-                    My mix of ambition and compassion means I push for results while ensuring everyone feels valued. Need a motivated teammate who'll have your back? That's me in a nutshell. 
-                </p>
-            </div>
-            <br>
-            <div class="reveal">
-                <a href="AjayJ_Linkedin_Resume.pdf" class="btn-primary" download>Download Resume</a>
-            </div>
-            <br>
-            <br>     
-            <!-- GitHub Contributions Section -->
-            <div class="reveal">
-                <div class="github-contributions">
-                    <h3>My GitHub Contributions</h3>
-                    <!-- Replace 'your-username' with your actual GitHub username -->
-                    <img src="https://ghchart.rshah.org/AjayJ07-git" alt="GitHub Contributions Graph">
+            <div class="about-two-column">
+                <!-- Left Column: Personal Info -->
+                <div class="about-left-column reveal-left">
+                    <div class="about-content">
+                        <p> I'm a determined go-getter with a strong work ethic. You can count on me to get things done.
+                            I care deeply about others and approach tasks with sensitivity. As a natural leader, I excel at bringing teams together.
+                            While ambitious, I balance drive with empathy. I'm the dependable friend who'll work tirelessly on a project, but also remember your birthday.
+                            My mix of ambition and compassion means I push for results while ensuring everyone feels valued. Need a motivated teammate who'll have your back? That's me in a nutshell. 
+                        </p>
+                    </div>
+                    <br>
+                    <div class="resume-download">
+                        <a href="AjayJ_Linkedin_Resume.pdf" class="btn-primary" download>Download Resume</a>
+                    </div>
+                    <br>
+                    <br>     
+                    <!-- GitHub Contributions Section -->
+                    <div class="github-contributions">
+                        <h3>My GitHub Contributions</h3>
+                        <!-- Replace 'your-username' with your actual GitHub username -->
+                        <img src="https://ghchart.rshah.org/AjayJ07-git" alt="GitHub Contributions Graph">
+                    </div>
                 </div>
-            </div>
-            
-            <!-- Education Section within About Me -->
-            <div class="reveal" style="margin-top: 80px;">
-                <h3 style="color: var(--text-color); font-size: 1.8rem; margin-bottom: 40px; font-weight: 600; text-align: center; text-shadow: 0 2px 4px rgba(0,0,0,0.3);">My Educational Journey</h3>
-                <div class="timeline">
-                    <div class="timeline-item left fade-in">
-                        <div class="timeline-content">
-                            <h3>Bachelor of Technology in Civil Engineering (08.14 CGPA) </h3>
-                            <p>NIT, Trichy 2022 - Present</p>
+                
+                <!-- Right Column: Education Timeline -->
+                <div class="about-right-column reveal-right">
+                    <h3 class="education-title">My Educational Journey</h3>
+                    <div class="timeline">
+                        <div class="timeline-item left fade-in">
+                            <div class="timeline-content">
+                                <h3>Bachelor of Technology in Civil Engineering (08.14 CGPA) </h3>
+                                <p>NIT, Trichy 2022 - Present</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="timeline-item right fade-in">
-                        <div class="timeline-content">
-                            <h3>Class XII  (94.20%) </h3>
-                            <p>Pushpalata Vidya Mandir 2021-22 </p>
+                        <div class="timeline-item right fade-in">
+                            <div class="timeline-content">
+                                <h3>Class XII  (94.20%) </h3>
+                                <p>Pushpalata Vidya Mandir 2021-22 </p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="timeline-item left fade-in">
-                        <div class="timeline-content">
-                            <h3>Class X  (83.60%) </h3>
-                            <p>Pushpalata Vidya Mandir 2019-20 </p>
+                        <div class="timeline-item left fade-in">
+                            <div class="timeline-content">
+                                <h3>Class X  (83.60%) </h3>
+                                <p>Pushpalata Vidya Mandir 2019-20 </p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -290,6 +292,11 @@
     <footer class="footer reveal">
         <p>&copy; 2024 Ajay J. All rights reserved.</p>
     </footer>
+
+    <!-- Scroll to Top Button -->
+    <button id="scrollToTopBtn" class="scroll-to-top" aria-label="Scroll to top">
+        <i class='bx bx-up-arrow-alt'></i>
+    </button>
 
     <!-- Main JavaScript -->
     <script src="scripts.js"></script>

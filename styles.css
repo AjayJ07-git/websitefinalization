@@ -1421,8 +1421,59 @@ body.loading {
     z-index: -1;
 }
 
+/* Two-column layout for About Me section */
+.about-two-column {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: start;
+    margin-top: 40px;
+}
+
+.about-left-column {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.about-right-column {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.education-title {
+    color: var(--text-color);
+    font-size: 1.8rem;
+    margin-bottom: 40px;
+    font-weight: 600;
+    text-align: center;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+[data-theme="dark"] .education-title {
+    color: #ffffff;
+    text-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+[data-theme="light"] .education-title {
+    color: #2d3748;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
 .about-content {
-    max-width: 800px;
+    max-width: 100%;
     margin: 0 auto 40px;
     text-align: center;
 }
@@ -1434,6 +1485,10 @@ body.loading {
     opacity: 0.9;
     text-align: justify;
     text-justify: inter-word;
+}
+
+.resume-download {
+    text-align: center;
 }
 
 /* GitHub contributions enhancement */
@@ -1471,6 +1526,231 @@ body.loading {
 .github-contributions img:hover {
     transform: scale(1.02);
     box-shadow: 0 20px 40px var(--shadow);
+}
+
+/* Timeline adjustments for right column */
+.about-right-column .timeline {
+    margin-top: 0;
+    max-width: 100%;
+}
+
+/* Scroll to Top Button */
+.scroll-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 20px rgba(59, 130, 246, 0.3);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.scroll-to-top:hover {
+    transform: translateY(-5px) scale(1.1);
+    box-shadow: 0 8px 30px rgba(59, 130, 246, 0.4);
+}
+
+.scroll-to-top.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.scroll-to-top i {
+    font-size: 24px;
+    transition: transform 0.3s ease;
+}
+
+.scroll-to-top:hover i {
+    transform: translateY(-2px);
+}
+
+/* Responsive Design for About Me Section */
+
+/* Large Desktop - 1440px and above */
+@media screen and (min-width: 1440px) {
+    .about-two-column {
+        gap: 80px;
+    }
+    
+    .education-title {
+        font-size: 2rem;
+    }
+}
+
+/* Desktop - 1024px to 1439px */
+@media screen and (min-width: 1024px) and (max-width: 1439px) {
+    .about-two-column {
+        gap: 50px;
+    }
+}
+
+/* Tablet Landscape - 768px to 1023px */
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+    .about-two-column {
+        gap: 40px;
+    }
+    
+    .about-content p {
+        font-size: 1rem;
+    }
+    
+    .education-title {
+        font-size: 1.6rem;
+        margin-bottom: 30px;
+    }
+    
+    .github-contributions h3 {
+        font-size: 1.6rem;
+    }
+    
+    .scroll-to-top {
+        width: 45px;
+        height: 45px;
+        bottom: 25px;
+        right: 25px;
+    }
+    
+    .scroll-to-top i {
+        font-size: 20px;
+    }
+}
+
+/* Tablet Portrait and below - Stack columns vertically */
+@media screen and (max-width: 767px) {
+    .about-two-column {
+        grid-template-columns: 1fr;
+        gap: 60px;
+    }
+    
+    .about-left-column {
+        order: 1;
+    }
+    
+    .about-right-column {
+        order: 2;
+    }
+    
+    .education-title {
+        font-size: 1.5rem;
+        margin-bottom: 25px;
+    }
+    
+    .github-contributions h3 {
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+    }
+    
+    .github-contributions {
+        margin-top: 40px;
+    }
+    
+    .scroll-to-top {
+        width: 40px;
+        height: 40px;
+        bottom: 20px;
+        right: 20px;
+    }
+    
+    .scroll-to-top i {
+        font-size: 18px;
+    }
+}
+
+/* Mobile Large - 376px to 480px */
+@media screen and (min-width: 376px) and (max-width: 480px) {
+    .about-two-column {
+        gap: 40px;
+    }
+    
+    .about-content p {
+        font-size: 1rem;
+        line-height: 1.6;
+    }
+    
+    .education-title {
+        font-size: 1.4rem;
+        margin-bottom: 20px;
+    }
+    
+    .github-contributions h3 {
+        font-size: 1.4rem;
+    }
+    
+    .github-contributions {
+        margin-top: 30px;
+    }
+}
+
+/* Mobile Medium - 321px to 375px */
+@media screen and (min-width: 321px) and (max-width: 375px) {
+    .about-two-column {
+        gap: 35px;
+    }
+    
+    .about-content p {
+        font-size: 0.95rem;
+        line-height: 1.6;
+    }
+    
+    .education-title {
+        font-size: 1.3rem;
+        margin-bottom: 18px;
+    }
+    
+    .github-contributions h3 {
+        font-size: 1.3rem;
+    }
+}
+
+/* Mobile Small - 280px to 320px */
+@media screen and (max-width: 320px) {
+    .about-two-column {
+        gap: 30px;
+    }
+    
+    .about-content p {
+        font-size: 0.9rem;
+        line-height: 1.5;
+    }
+    
+    .education-title {
+        font-size: 1.2rem;
+        margin-bottom: 15px;
+    }
+    
+    .github-contributions h3 {
+        font-size: 1.2rem;
+    }
+    
+    .github-contributions {
+        margin-top: 25px;
+    }
+    
+    .scroll-to-top {
+        width: 35px;
+        height: 35px;
+        bottom: 15px;
+        right: 15px;
+    }
+    
+    .scroll-to-top i {
+        font-size: 16px;
+    }
 }
 
 /* Education section within About Me styling */
