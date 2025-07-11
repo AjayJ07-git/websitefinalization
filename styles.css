@@ -1147,8 +1147,8 @@ body.loading {
     box-shadow: 0 15px 30px var(--shadow);
 }
 
-/* Education, Experience sections */
-.education, .experience {
+/* Experience sections */
+.experience {
     padding: 80px 0;
     background: linear-gradient(135deg, rgba(59, 130, 246, 0.02) 0%, rgba(139, 92, 246, 0.02) 100%);
 }
@@ -1471,6 +1471,35 @@ body.loading {
 .github-contributions img:hover {
     transform: scale(1.02);
     box-shadow: 0 20px 40px var(--shadow);
+}
+
+/* Education section within About Me styling */
+.about .timeline {
+    margin-top: 40px;
+}
+
+.about h3:not(.github-contributions h3) {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+[data-theme="dark"] .about h3:not(.github-contributions h3) {
+    color: #ffffff;
+    text-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+[data-theme="light"] .about h3:not(.github-contributions h3) {
+    color: #2d3748;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 /* Footer */
@@ -1796,7 +1825,7 @@ body.loading {
         margin-bottom: 30px;
     }
     
-    .about, .skills, .portfolio, .education, .experience, .contact {
+    .about, .skills, .portfolio, .experience, .contact {
         padding: 60px 0;
     }
     
@@ -1981,7 +2010,7 @@ body.loading {
         margin-bottom: 25px;
     }
     
-    .about, .skills, .portfolio, .education, .experience, .contact {
+    .about, .skills, .portfolio, .experience, .contact {
         padding: 50px 0;
     }
     
@@ -2235,7 +2264,7 @@ body.loading {
         margin-bottom: 20px;
     }
     
-    .about, .skills, .portfolio, .education, .experience, .contact {
+    .about, .skills, .portfolio, .experience, .contact {
         padding: 40px 0;
     }
     
@@ -2407,7 +2436,7 @@ body.loading {
         margin-bottom: 15px;
     }
     
-    .about, .skills, .portfolio, .education, .experience, .contact {
+    .about, .skills, .portfolio, .experience, .contact {
         padding: 30px 0;
     }
     
@@ -2440,7 +2469,6 @@ body.loading {
     .about,
     .skills,
     .portfolio,
-    .education,
     .experience {
         page-break-inside: avoid;
         padding: 20px 0;
