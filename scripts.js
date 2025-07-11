@@ -455,6 +455,13 @@ function initDropdown() {
     let isOpen = false;
     
     dropdownToggle.addEventListener('click', function(e) {
+        // Disable dropdown functionality on mobile devices (767px and below)
+        if (window.innerWidth <= 767) {
+            e.preventDefault();
+            e.stopPropagation();
+            return;
+        }
+        
         e.preventDefault();
         e.stopPropagation();
         
@@ -492,6 +499,15 @@ function initDropdown() {
             dropdown.classList.remove('active');
             dropdownMenu.style.display = 'none';
         });
+    });
+    
+    // Close dropdown when window is resized to mobile view
+    window.addEventListener('resize', function() {
+        if (window.innerWidth <= 767 && isOpen) {
+            isOpen = false;
+            dropdown.classList.remove('active');
+            dropdownMenu.style.display = 'none';
+        }
     });
     
     // Add slideUp animation to CSS

@@ -115,6 +115,19 @@ body.loading {
     --glass-bg: rgba(255,255,255,0.05);
 }
 
+/* Enhanced mobile menu backgrounds for consistent translucency across all devices */
+@media screen and (max-width: 767px) {
+    [data-theme="dark"] .nav-menu {
+        background: rgba(15, 23, 42, 0.2) !important;
+        border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    [data-theme="light"] .nav-menu {
+        background: rgba(255, 255, 255, 0.15) !important;
+        border-top: 1px solid rgba(0,0,0,0.1);
+    }
+}
+
 /* Scroll reveal animations */
 .reveal {
     opacity: 0;
@@ -303,7 +316,7 @@ body.loading {
 
 @media screen and (max-width: 767px) {
     .desktop-only {
-        display: none;
+        display: none !important;
     }
     
     .mobile-only {
@@ -1667,8 +1680,9 @@ body.loading {
         top: 100%;
         left: 0;
         right: 0;
-        background: var(--glass-bg);
-        backdrop-filter: blur(20px);
+        background: rgba(255, 255, 255, 0.1) !important;
+        backdrop-filter: blur(20px) !important;
+        -webkit-backdrop-filter: blur(20px) !important;
         border-top: 1px solid rgba(255,255,255,0.1);
         flex-direction: column;
         gap: 0;
@@ -1678,6 +1692,7 @@ body.loading {
         box-shadow: 0 10px 30px var(--shadow);
         max-height: calc(100vh - 80px);
         overflow-y: auto;
+        z-index: 9999;
     }
     
     .nav-menu.active {
@@ -1896,8 +1911,9 @@ body.loading {
         top: 100%;
         left: 0;
         right: 0;
-        background: var(--glass-bg);
-        backdrop-filter: blur(20px);
+        background: rgba(255, 255, 255, 0.1) !important;
+        backdrop-filter: blur(20px) !important;
+        -webkit-backdrop-filter: blur(20px) !important;
         border-top: 1px solid rgba(255,255,255,0.1);
         flex-direction: column;
         gap: 0;
@@ -1907,6 +1923,7 @@ body.loading {
         box-shadow: 0 10px 30px var(--shadow);
         max-height: calc(100vh - 70px);
         overflow-y: auto;
+        z-index: 9999;
     }
     
     .nav-menu.active {
@@ -2138,8 +2155,9 @@ body.loading {
         top: 100%;
         left: 0;
         right: 0;
-        background: var(--glass-bg);
-        backdrop-filter: blur(20px);
+        background: rgba(255, 255, 255, 0.1) !important;
+        backdrop-filter: blur(20px) !important;
+        -webkit-backdrop-filter: blur(20px) !important;
         border-top: 1px solid rgba(255,255,255,0.1);
         flex-direction: column;
         gap: 0;
@@ -2147,6 +2165,7 @@ body.loading {
         transform: translateY(-100vh);
         transition: transform 0.3s ease;
         box-shadow: 0 10px 30px var(--shadow);
+        z-index: 9999;
         max-height: calc(100vh - 60px);
         overflow-y: auto;
     }
@@ -2347,6 +2366,19 @@ body.loading {
         display: flex;
         align-items: center;
         justify-content: center;
+    }
+    
+    /* Completely disable dropdown on touch devices */
+    .dropdown:hover .dropdown-menu {
+        display: none !important;
+    }
+    
+    .dropdown-menu {
+        display: none !important;
+    }
+    
+    .dropdown-toggle {
+        pointer-events: none !important;
     }
 }
 
